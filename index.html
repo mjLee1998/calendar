@@ -8,5 +8,19 @@
         <link rel="stylesheet" href="style.css" />
         <script src="app.js"></script>
     </head>
-    <body></body>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            async function getClientIP() {
+                try {
+                    const response = await axios.get('https://api.ipify.org?format=json');
+                    console.log(response);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            getClientIP();
+        </script>
+    </body>
 </html>
