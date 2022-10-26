@@ -31,8 +31,9 @@ select {
     border: none;
     color: #999999;
 }
-th .SUN {
-    font-size: 10px;
+th.SUN,
+.SAT {
+    color: rgb(255, 140, 140);
 }
 td {
     height: 130px;

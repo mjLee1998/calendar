@@ -5,6 +5,7 @@ export class calendar {
         const month = today.getMonth() + 1;
         const date = today.getDate();
         console.log(year, month, date);
+        console.log(today);
         // 해당 달의 일 수 구하기
         var lastDay;
 
