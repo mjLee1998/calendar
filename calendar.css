@@ -16,6 +16,24 @@ body {
     height: 100%;
     overflow: hidden;
 }
+button {
+    white-space: nowrap;
+}
+.calendar {
+    width: 80%;
+    margin: 50px auto 0px auto;
+}
+caption {
+    font-size: 32px;
+}
+select {
+    appearance: none;
+    border: none;
+    color: #999999;
+}
+td {
+    height: 150%;
+}
 tbody tr :nth-child(1) {
     color: rgb(255, 140, 140);
 }

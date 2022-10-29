@@ -36,14 +36,22 @@ let Week = WeekDay[today.getDay()];
 // console.log(Week);
 
 // 이번 달 1일의 요일 구하기
-const firstDay = new Date(year, month - 1, 1);
-var w = firstDay.getDay();
-const firstDayWeek = WeekDay[firstDay.getDay()];
+// const firstDay = new Date(year, month - 1, 1);
+// var w = firstDay.getDay();
+// const firstDayWeek = WeekDay[firstDay.getDay()];
 // console.log(firstDayWeek);
 
+// 현재 해당하는 달로 이동하기
+const nowMonth = document.querySelector('select :nth-child(' + month + ')');
+nowMonth.setAttribute('selected', 'selected');
+
 // 달력 채우기
-var x = w;
-function fillCalendar(x) {
+// 달을 바꿀 때마다 자동으로 채워주기 위해서 select에 onchange를 걸어서 value를 여기로 보내서 처리
+export default function fillCalendar(mV) {
+    const firstDay = new Date(year, mV - 1, 1);
+    var w = firstDay.getDay();
+    const firstDayWeek = WeekDay[firstDay.getDay()];
+    var x = w;
     for (var i = 1; i <= lastDay; i++) {
         var everyDay = new Date(year, month - 1, i);
         // console.log(everyDay);
@@ -57,8 +65,14 @@ function fillCalendar(x) {
 
         //매일매일에 일 채워넣기
         var getDay = document.querySelectorAll('.d' + (i + x));
-        console.log(getDay[0]);
+        // console.log(getDay[0]);
         getDay[0].innerHTML = i;
     }
 }
-fillCalendar(x);
+// 페이지 시작하면 이번 달을 기준으로 달력을 채움
+window.onload = fillCalendar(nowMonth.value);
+
+const selectedMonth = document.querySelector('#selectMonth');
+selectedMonth.onchange = function () {
+    fillCalendar(selectedMonth.value);
+};
