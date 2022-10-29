@@ -31,8 +31,10 @@ select {
     border: none;
     color: #999999;
 }
+option {
+}
 td {
-    height: 150%;
+    height: 130px;
 }
 tbody tr :nth-child(1) {
     color: rgb(255, 140, 140);

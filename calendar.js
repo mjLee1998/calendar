@@ -74,5 +74,14 @@ window.onload = fillCalendar(nowMonth.value);
 
 const selectedMonth = document.querySelector('#selectMonth');
 selectedMonth.onchange = function () {
+    // 지금 달력 다 지우기
+    var everyDay = document.querySelectorAll('td');
+    console.log(everyDay);
+    var i;
+    for (i = 0; i < 42; i++) {
+        everyDay[i].innerHTML = '';
+    }
+
+    //다시 채우기
     fillCalendar(selectedMonth.value);
 };
