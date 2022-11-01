@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: helvetica;
+    /* border: 1px solid black; */
 }
 
 html {
@@ -15,17 +16,27 @@ body {
     height: 100%;
     overflow: hidden;
 }
+button {
+    white-space: nowrap;
+}
 .calendar {
-    border: 1px solid black;
-    height: 720px;
-    margin: auto;
+    width: 80%;
+    margin: 50px auto 0px auto;
 }
-.calendar th {
-    border: 1px solid black;
-    font-size: 20px;
+caption {
+    font-size: 32px;
 }
-.calendar td {
-    vertical-align: top;
-    border: 1px solid black;
-    height: 100px;
+select {
+    appearance: none;
+    border: none;
+    color: #999999;
+}
+td {
+    height: 130px;
+}
+tbody tr :nth-child(1) {
+    color: rgb(255, 140, 140);
+}
+tbody tr :nth-child(7) {
+    color: rgb(255, 140, 140);
 }
