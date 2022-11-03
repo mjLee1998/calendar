@@ -1,1 +1,1 @@
-import { calendar } from './calendar.js';
+import fillCalendar from './calendar.js';
