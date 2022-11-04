@@ -2,7 +2,8 @@ import { calendar } from './testCalendar.js';
 
 class App {
     constructor() {
-        fillCalender(selectMonth.value);
+        // fillCalender(selectMonth.value);
+        console.log('hi');
     }
 }
 
