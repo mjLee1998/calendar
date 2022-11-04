@@ -9,5 +9,5 @@ class App {
 
 window.onload = () => {
     new App();
-    getClientIP();
+    // getClientIP();
 };
