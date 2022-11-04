@@ -1,3 +1,4 @@
+// import axios from 'axios';
 export async function getClientIP() {
     try {
         const response = await axios.get('https://api.ipify.org?format=json');
@@ -6,5 +7,3 @@ export async function getClientIP() {
         console.error(error);
     }
 }
-
-getClientIP();
