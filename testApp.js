@@ -1,9 +1,8 @@
-import { calendar } from './testCalendar.js';
+import { calendar } from './testCalender.js';
 
 class App {
     constructor() {
-        // fillCalender(selectMonth.value);
-        console.log('hi');
+        this.calendar = new calendar();
     }
 }
 
