@@ -1,4 +1,4 @@
-import { calendar } from './testCalender.js';
+import { calendar } from './calendar.js';
 import { getClientIP } from './getClientIp.js';
 
 class App {
