@@ -53,9 +53,20 @@ export class calendar {
                 // console.log(getDay[0]);
                 getDay[0].innerHTML = i;
             }
+
+            // 마지막 주(6번째 주)가 비어있다면 안보이게 하기
+            const twentynine = document.querySelector('.d36');
+            if (twentynine.innerHTML == '') {
+                document.querySelector('.sixthWeek').style.display = 'none';
+            } else {
+                document.querySelector('.sixthWeek').style.display = 'contents';
+            }
         }
+
         // 페이지 시작하면 이번 달을 기준으로 달력을 채움
         window.onload = fillCalendar(nowMonth.value);
+
+        // 다른 달을 선택하면 바꿔주기
         const selectedMonth = document.querySelector('#selectMonth');
         selectedMonth.onchange = function () {
             // 지금 달력 다 지우기
