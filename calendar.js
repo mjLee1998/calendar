@@ -24,7 +24,7 @@ export class calendar {
         // 달을 바꿀 때마다 자동으로 채워주기 위해서 select에 onchange를 걸어서 value를 여기로 보내서 처리
         function fillCalendar(mV) {
             const firstDay = new Date(year, mV - 1, 1);
-            console.log(firstDay);
+            // console.log(firstDay);
             var w = firstDay.getDay();
             const firstDayWeek = WeekDay[firstDay.getDay()];
             var x = w;

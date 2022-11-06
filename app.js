@@ -6,8 +6,7 @@ class App {
         new calendar();
     }
 }
-
 window.onload = () => {
     new App();
-    // getClientIP();
+    getClientIP();
 };
