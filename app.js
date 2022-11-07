@@ -1,13 +1,13 @@
-import { calendar } from "./calendar.js";
-import { getClientIP } from "./getClientIp.js";
+import { calendar } from './calendar.js';
+import { getClientIP } from './getClientIp.js';
 
 //main app.js
 class App {
-  constructor() {
-    new calendar();
-  }
+    constructor() {
+        new calendar();
+    }
 }
 window.onload = () => {
-  new App();
-  getClientIP();
+    new App();
+    getClientIP();
 };
