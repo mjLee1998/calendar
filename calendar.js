@@ -25,7 +25,6 @@ export class calendar {
         // 달을 바꿀 때마다 자동으로 채워주기 위해서 select에 onchange를 걸어서 value를 여기로 보내서 처리
         function fillCalendar(mV) {
             const firstDay = new Date(year, mV - 1, 1);
-            // console.log(firstDay);
             var w = firstDay.getDay();
             const firstDayWeek = WeekDay[firstDay.getDay()];
             var x = w;
@@ -92,6 +91,35 @@ export class calendar {
             } else {
                 fillCalendar(selectedMonth.value - 1);
             }
+            var prevMonth;
+            if (selectedMonth.value == 1) {
+                prevMonth = document.querySelector('#M12');
+            } else {
+                prevMonth = document.querySelector('#M' + (selectedMonth.value - 1));
+            }
+            const months = document.querySelectorAll('option');
+            // for (i = 0; i < 12; i++) {
+            //     months[i].setAttribute('selected', false);
+            // }
+            console.log(prevMonth);
+            prevMonth.setAttribute('selected', 'selected');
+        };
+        const nextClick = document.querySelector('#nextMonth');
+        nextClick.onclick = () => {
+            var everyDay = document.querySelectorAll('td');
+            var i;
+            for (i = 0; i < 42; i++) {
+                everyDay[i].innerHTML = '';
+            }
+            if (selectedMonth.value == 12) {
+                fillCalendar(1);
+            } else {
+                fillCalendar(selectedMonth.value + 1);
+            }
+            console.log(selectedMonth.value);
+            const nextMonth = document.querySelector('#M' + (selectedMonth.value + 1));
+            console.log(nextMonth);
+            // nextMonth.setAttribute('selected', 'selected');
         };
     }
 }
