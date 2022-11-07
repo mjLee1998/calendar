@@ -5,7 +5,6 @@ export class calendar {
         const month = today.getMonth() + 1;
         const date = today.getDate();
         console.log(year, month, date);
-        console.log(today);
         // 해당 달의 일 수 구하기
         var lastDay;
 
@@ -69,7 +68,7 @@ export class calendar {
 
         // 다른 달을 선택하면 바꿔주기
         const selectedMonth = document.querySelector('#selectMonth');
-        selectedMonth.onchange = function () {
+        selectedMonth.onchange = () => {
             // 지금 달력 다 지우기
             var everyDay = document.querySelectorAll('td');
             // console.log(everyDay);
