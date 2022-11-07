@@ -79,9 +79,10 @@
             </nav>
         </head>
         <main>
-            <table class="table caption-top calendar container">
-                <caption>
-                    <select name="selectMonth" id="selectMonth">
+            <table class="table caption-top calendar container" style="max-width: 900px">
+                <caption style="margin: auto">
+                    <input id="previousMonth" type="button" value="&#5130;" />
+                    <select name="selectMonth" id="selectMonth" class="form-control custom-select">
                         <option value="1">1월</option>
                         <option value="2">2월</option>
                         <option value="3">3월</option>
@@ -95,6 +96,7 @@
                         <option value="11">11월</option>
                         <option value="12">12월</option>
                     </select>
+                    <input id="nextMonth" type="button" value="&#5125;" />
                 </caption>
                 <thead>
                     <th class="col SUN">일</th>

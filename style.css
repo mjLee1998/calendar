@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     font-family: helvetica;
-    /* border: 1px solid black; */
 }
 
 html {
@@ -21,15 +20,43 @@ button {
 }
 .calendar {
     width: 80%;
-    margin: 20px auto 0px auto;
+    margin: 5px auto 0px auto;
 }
 caption {
     font-size: 32px;
+    width: 127px;
 }
-select {
+#previousMonth {
+    border: none;
+    background-color: white;
+    color: #999999;
+    height: 45px;
+    float: left;
+}
+#nextMonth {
+    border: none;
+    background-color: white;
+    color: #999999;
+    height: 45px;
+}
+#selectMonth {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     border: none;
     color: #999999;
+    font-size: 28px;
+    width: 79px;
+    height: 45px;
+    line-height: 1;
+    float: left;
+}
+option {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 30px;
+    background: #ffffff;
 }
 th.SUN,
 .SAT {

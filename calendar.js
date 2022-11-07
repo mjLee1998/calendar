@@ -20,6 +20,7 @@ export class calendar {
         // 현재 해당하는 달로 이동하기
         const nowMonth = document.querySelector('select :nth-child(' + month + ')');
         nowMonth.setAttribute('selected', 'selected');
+
         // 달력 채우기
         // 달을 바꿀 때마다 자동으로 채워주기 위해서 select에 onchange를 걸어서 value를 여기로 보내서 처리
         function fillCalendar(mV) {
@@ -78,6 +79,19 @@ export class calendar {
             }
             //다시 채우기
             fillCalendar(selectedMonth.value);
+        };
+        const prevClick = document.querySelector('#previousMonth');
+        prevClick.onclick = () => {
+            var everyDay = document.querySelectorAll('td');
+            var i;
+            for (i = 0; i < 42; i++) {
+                everyDay[i].innerHTML = '';
+            }
+            if (selectedMonth.value == 1) {
+                fillCalendar(12);
+            } else {
+                fillCalendar(selectedMonth.value - 1);
+            }
         };
     }
 }
