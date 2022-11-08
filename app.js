@@ -8,6 +8,6 @@ class App {
     }
 }
 window.onload = () => {
-    new App();
     getClientIP();
+    new App();
 };

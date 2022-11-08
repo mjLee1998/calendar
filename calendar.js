@@ -41,7 +41,6 @@ export class calendar {
                     var lastDay = 28;
                 }
             }
-            // console.log(lastDay);
             for (var i = 1; i <= lastDay; i++) {
                 var everyDay = new Date(year, month - 1, i);
                 // console.log(everyDay);
@@ -106,7 +105,6 @@ export class calendar {
             $('option:selected').removeAttr('selected');
             // DOM요소가 아닌 것에 setAttr을 사용하면 오류가 발생한다.
             prevMonth.setAttribute('selected', 'selected');
-            console.log(prevMonth);
         };
 
         // 다음 달
@@ -120,7 +118,7 @@ export class calendar {
             if (selectedMonth.value == 12) {
                 fillCalendar(1);
             } else {
-                fillCalendar(selectedMonth.value + 1);
+                fillCalendar(parseInt(selectedMonth.value) + 1);
             }
             var nextMonth;
             if (selectedMonth.value == 12) {
@@ -130,9 +128,16 @@ export class calendar {
                 // -연산자의 경우에는 string이어도 ''안이 숫자로만 이루어져 있으면 number로 인식
                 nextMonth = document.querySelector('#M' + (parseInt(selectedMonth.value) + 1));
             }
-            console.log(nextMonth);
             $('option:selected').removeAttr('selected');
             nextMonth.setAttribute('selected', 'selected');
+        };
+
+        // 현재
+        const nowClick = document.querySelector('#goToNow');
+        nowClick.onclick = () => {
+            fillCalendar(nowMonth.value);
+            $('option:selected').removeAttr('selected');
+            nowMonth.setAttribute('selected', 'selected');
         };
     }
 }

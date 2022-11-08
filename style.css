@@ -3,7 +3,7 @@
     outline: 0;
     margin: 0;
     padding: 0;
-    font-family: helvetica;
+    font-family: 'adobe-clean', Arial, Helvetica, sans-serif;
 }
 
 html {
@@ -31,35 +31,43 @@ caption {
     -moz-appearance: none;
     appearance: none;
     border: none;
-    color: #999999;
+    color: #777;
     font-size: 28px;
-    width: 90px;
-    height: 45px;
+    width: 55px;
+    height: 40px;
     line-height: 1;
     float: left;
+    padding: 0;
 }
-.monthControl {
+#selectMonth:hover {
+    color: #000;
+}
+#monthControl {
+    width: 107px;
     float: right;
-    margin-right: 60px;
+    padding: 0;
 }
 #previousMonth {
     border: none;
     background-color: white;
     color: #999999;
     height: 45px;
-    float: left;
     font-size: 24px;
     margin-right: 10px;
 }
-#goToNowMonth {
+#previousMonth:hover {
+    color: #000;
+}
+#goToNow {
     appearance: none;
     border: none;
     background-color: white;
     color: #999999;
     height: 45px;
-    float: left;
     font-size: 24px;
-    margin-right: 10px;
+}
+#goToNow:hover {
+    color: #000;
 }
 #nextMonth {
     border: none;
@@ -67,6 +75,10 @@ caption {
     color: #999999;
     height: 45px;
     font-size: 24px;
+    margin-left: 10px;
+}
+#nextMonth:hover {
+    color: #000;
 }
 option {
     -webkit-appearance: none;
@@ -75,16 +87,28 @@ option {
     height: 30px;
     background: #ffffff;
 }
-th.SUN,
-.SAT {
-    color: rgb(255, 140, 140);
+th.SAT {
+    color: #60a6a6;
+}
+th.SUN {
+    color: #ff8c8c;
 }
 td {
     height: 100px;
+    outline: 0px solid black;
+    color: black;
+    background-color: white;
+    transition: background-color 500ms, outline 500ms, scale 500ms, color 500ms;
+}
+td:hover {
+    scale: 130%;
+    /* outline: 2px solid r; */
+    background-color: black;
+    color: white;
 }
 tbody tr :nth-child(1) {
-    color: rgb(255, 140, 140);
+    color: #ff8c8c;
 }
 tbody tr :nth-child(7) {
-    color: rgb(255, 140, 140);
+    color: #60a6a6;
 }
