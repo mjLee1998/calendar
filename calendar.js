@@ -1,3 +1,5 @@
+import * as jquery from './jquery.js';
+
 export class calendar {
     constructor() {
         const today = new Date();
@@ -79,6 +81,10 @@ export class calendar {
             //다시 채우기
             fillCalendar(selectedMonth.value);
         };
+
+        // 달 이동하기 버튼
+
+        // 저번 달
         const prevClick = document.querySelector('#previousMonth');
         prevClick.onclick = () => {
             var everyDay = document.querySelectorAll('td');
@@ -97,10 +103,13 @@ export class calendar {
             } else {
                 prevMonth = document.querySelector('#M' + (selectedMonth.value - 1));
             }
-            selectedMonth.value = 0;
+            $('option:selected').removeAttr('selected');
+            // DOM요소가 아닌 것에 setAttr을 사용하면 오류가 발생한다.
             prevMonth.setAttribute('selected', 'selected');
             console.log(prevMonth);
         };
+
+        // 다음 달
         const nextClick = document.querySelector('#nextMonth');
         nextClick.onclick = () => {
             var everyDay = document.querySelectorAll('td');
@@ -117,9 +126,12 @@ export class calendar {
             if (selectedMonth.value == 12) {
                 nextMonth = document.querySelector('#M1');
             } else {
-                nextMonth = document.querySelector('#M' + (selectedMonth.value + 1));
+                // +연산자를 사용했을 때, 오류가 생기면 typeof를 사용해서 값이 number인지 string인지 확인하기
+                // -연산자의 경우에는 string이어도 ''안이 숫자로만 이루어져 있으면 number로 인식
+                nextMonth = document.querySelector('#M' + (parseInt(selectedMonth.value) + 1));
             }
             console.log(nextMonth);
+            $('option:selected').removeAttr('selected');
             nextMonth.setAttribute('selected', 'selected');
         };
     }
