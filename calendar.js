@@ -97,11 +97,9 @@ export class calendar {
             } else {
                 prevMonth = document.querySelector('#M' + (selectedMonth.value - 1));
             }
-            console.log(prevMonth);
+            selectedMonth.value = 0;
             prevMonth.setAttribute('selected', 'selected');
-            // const months = document.querySelectorAll('option');
-            // 지금이 11월인데 처음에 selected가 부여되어 있어서 새로 selected가 부여되지 않음
-            // selected 해제하는 법 배우기
+            console.log(prevMonth);
         };
         const nextClick = document.querySelector('#nextMonth');
         nextClick.onclick = () => {
@@ -123,7 +121,6 @@ export class calendar {
             }
             console.log(nextMonth);
             nextMonth.setAttribute('selected', 'selected');
-            // nextMonth.setAttribute('selected', 'selected');
         };
     }
 }
