@@ -24,21 +24,7 @@ button {
     margin: 5px auto 0px auto;
 }
 caption {
-    font-size: 32px;
-    width: 127px;
-}
-#previousMonth {
-    border: none;
-    background-color: white;
-    color: #999999;
-    height: 45px;
-    float: left;
-}
-#nextMonth {
-    border: none;
-    background-color: white;
-    color: #999999;
-    height: 45px;
+    width: 100%;
 }
 #selectMonth {
     -webkit-appearance: none;
@@ -47,10 +33,40 @@ caption {
     border: none;
     color: #999999;
     font-size: 28px;
-    width: 79px;
+    width: 90px;
     height: 45px;
     line-height: 1;
     float: left;
+}
+.monthControl {
+    float: right;
+    margin-right: 60px;
+}
+#previousMonth {
+    border: none;
+    background-color: white;
+    color: #999999;
+    height: 45px;
+    float: left;
+    font-size: 24px;
+    margin-right: 10px;
+}
+#goToNowMonth {
+    appearance: none;
+    border: none;
+    background-color: white;
+    color: #999999;
+    height: 45px;
+    float: left;
+    font-size: 24px;
+    margin-right: 10px;
+}
+#nextMonth {
+    border: none;
+    background-color: white;
+    color: #999999;
+    height: 45px;
+    font-size: 24px;
 }
 option {
     -webkit-appearance: none;

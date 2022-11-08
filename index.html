@@ -7,7 +7,6 @@
         <title>Issue Calendar</title>
         <link rel="icon" href="./favicon.png" />
         <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="./jquery.js" />
 
         <!-- Bootstrap -->
         <link
@@ -84,9 +83,8 @@
             </nav>
         </head>
         <main>
-            <table class="table caption-top calendar container" style="max-width: 900px">
-                <caption style="margin: auto">
-                    <input id="previousMonth" type="button" value="&#5130;" />
+            <table class="table caption-top calendar container-fluid" style="max-width: 900px">
+                <caption>
                     <select name="selectMonth" id="selectMonth" class="form-control custom-select">
                         <option id="M1" value="1">1월</option>
                         <option id="M2" value="2">2월</option>
@@ -101,7 +99,11 @@
                         <option id="M11" value="11">11월</option>
                         <option id="M12" value="12">12월</option>
                     </select>
-                    <input id="nextMonth" type="button" value="&#5125;" />
+                    <div class="monthControl container">
+                        <input id="previousMonth" type="button" value="&#5130;" />
+                        <input id="goToNowMonth" type="button" value="현재" />
+                        <input id="nextMonth" type="button" value="&#5125;" />
+                    </div>
                 </caption>
                 <thead>
                     <th class="col SUN">일</th>
