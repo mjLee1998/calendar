@@ -3,11 +3,11 @@ import { getClientIP } from './getClientIp.js';
 
 //main app.js
 class App {
-    constructor() {
-        new calendar();
-    }
+  constructor() {
+    new calendar();
+  }
 }
 window.onload = () => {
-    getClientIP();
-    new App();
+  getClientIP();
+  new App();
 };
