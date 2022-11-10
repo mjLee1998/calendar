@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="./node_modules/@socket.io/component-emitter/index.js"></script>
+    <script>
+      // localhost로 연결한다.
+      var socket = io.connect('http://localhost');
+
+      // 서버에서 news 이벤트가 일어날 때 데이터를 받는다.
+      socket.on('news', function (data) {
+        console.log(data);
+        //서버에 my other event 이벤트를 보낸다.
+        socket.emit('my other event', { my: 'data' });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
