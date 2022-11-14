@@ -111,8 +111,7 @@ export class calendar {
     const nextClick = document.querySelector('#nextMonth');
     nextClick.onclick = () => {
       var everyDay = document.querySelectorAll('td');
-      var i;
-      for (i = 0; i < 42; i++) {
+      for (var i = 0; i < 42; i++) {
         everyDay[i].innerHTML = '';
       }
       if (selectedMonth.value == 12) {
