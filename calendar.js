@@ -1,6 +1,6 @@
 import * as jquery from './jquery.js';
 
-export class calendar {
+export default class calendar {
   constructor() {
     const today = new Date();
     const year = today.getFullYear();
@@ -53,6 +53,7 @@ export class calendar {
         var getDay = document.querySelectorAll('.d' + (i + x));
         // console.log(getDay[0]);
         getDay[0].innerHTML = i;
+        getDay[0].setAttribute('onclick', "location.href='info.html'");
       }
 
       // 마지막 주(6번째 주)가 비어있다면 안보이게 하기
@@ -111,8 +112,7 @@ export class calendar {
     const nextClick = document.querySelector('#nextMonth');
     nextClick.onclick = () => {
       var everyDay = document.querySelectorAll('td');
-      var i;
-      for (i = 0; i < 42; i++) {
+      for (var i = 0; i < 42; i++) {
         everyDay[i].innerHTML = '';
       }
       if (selectedMonth.value == 12) {
