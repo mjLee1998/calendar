@@ -1,10 +1,10 @@
-import { calendar } from './calendar.js';
-import { getClientIP } from './getClientIp.js';
+import calendar from './calendar.js';
+import getClientIP from './getClientIp.js';
 import vote from './vote.js';
 class App {
   constructor() {
     new calendar();
-    // new vote();
+    new vote();
   }
 }
 window.onload = () => {
