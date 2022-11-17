@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mjLee1998/calendar/issues"
   },
-  "homepage": "https://github.com/mjLee1998/calendar#readme"
+  "homepage": "https://github.com/mjLee1998/calendar#readme",
+  "dependencies": {
+    "axios": "^1.1.3"
+  }
 }
