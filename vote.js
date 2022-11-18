@@ -17,10 +17,10 @@ export default class vote {
       data.addColumn('string', 'Topping');
       data.addColumn('number', 'Slices');
       data.addRows([
-        ['Mushrooms', 3],
+        ['Mushrooms', 5],
         ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
+        ['Olives', 4],
+        ['Zucchini', 4],
         ['Pepperoni', 2],
       ]);
 
