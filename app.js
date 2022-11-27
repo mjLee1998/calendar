@@ -4,7 +4,7 @@ import vote from './vote.js';
 class App {
   constructor() {
     new calendar();
-    new vote();
+    // new vote();
   }
 }
 window.onload = () => {
