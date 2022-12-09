@@ -35,6 +35,16 @@
     <div id="chatContent"></div>
     <input id="myChat" type="text" />
 
+    <div id="vote">
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <button type="button" onclick="shutSocket()">소켓 종료</button>
     <script>
       var socket = io.connect('http://localhost:3000');
 
