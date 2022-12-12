@@ -1,22 +1,21 @@
-vote.html:
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Real-Time Voting System</title>
-    <link rel="stylesheet" href="voteStyle.css" />
+    <title>Real-time Voting System</title>
   </head>
   <body>
-    <h1>Real-Time Voting System</h1>
-    <div id="votingOptions">
-      <div class="votingOption">Option 1</div>
-      <div class="votingOption">Option 2</div>
-      <div class="votingOption">Option 3</div>
-      <div class="votingOption">Option 4</div>
-      <div class="votingOption">Option 5</div>
-    </div>
+    <h1>Real-time Voting System</h1>
 
-    <script src="socket.io.js"></script>
-    <script src="voteServer.js"></script>
+    <h2>Vote:</h2>
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+
+    <h2>Results:</h2>
+    <div id="results">Yes: <span id="yes-count">0</span> No: <span id="no-count">0</span></div>
+
+    <!-- Include the Socket.io client library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Include the voting client script -->
+    <script src="/voteClient.js"></script>
   </body>
 </html>
