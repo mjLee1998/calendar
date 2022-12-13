@@ -1,6 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http); // socket 객체 : io
+// var io = require('socket.io')(http); // socket 객체 : io
+var io = require('socket.io')(http, { cors: { origin: '*' } });
 // 해당 서버를 소켓 서버임을 설정
 
 // 클라이언트가 최초 접속 시 보여지는 화면
