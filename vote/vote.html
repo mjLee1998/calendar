@@ -1,16 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <title>Real-time Voting</title>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script src="vote.js"></script>
   </head>
   <body>
-    <h1>투표</h1>
+    <h1>Real-time Voting</h1>
     <form>
-      <input type="radio" name="vote" value="A" onclick="vote(this.value)" />A
-      <input type="radio" name="vote" value="B" onclick="vote(this.value)" />B
-      <input type="radio" name="vote" value="C" onclick="vote(this.value)" />C
+      <input type="radio" name="vote" value="option1" /> Option 1<br />
+      <input type="radio" name="vote" value="option2" /> Option 2<br />
+      <input type="radio" name="vote" value="option3" /> Option 3<br />
+      <button type="submit">Submit</button>
     </form>
-    <h2>투표 결과</h2>
-    <ul id="vote-list"></ul>
+    <h2>Results:</h2>
+    <div id="results"></div>
+
+    <script src="vote.js"></script>
   </body>
 </html>
