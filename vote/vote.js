@@ -1,35 +1,19 @@
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
+const socket = io();
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+// 투표 이벤트
+function vote(vote) {
+  socket.emit('vote', vote);
+}
 
-var option1Votes = 0;
-var option2Votes = 0;
-var option3Votes = 0;
+// 투표 결과 수신 이벤트
+socket.on('vote', (data) => {
+  // 투표 결과를 HTML 문서에 표시
+  const voteList = document.getElementById('vote-list');
+  voteList.innerHTML = ''; // 기존 데이터 삭제
 
-io.on('connection', (socket) => {
-  console.log('New client connected');
-
-  socket.on('vote', (vote) => {
-    if (vote == 'option1') {
-      option1Votes++;
-    } else if (vote == 'option2') {
-      option2Votes++;
-    } else if (vote == 'option3') {
-      option3Votes++;
-    }
-
-    io.emit('updateVotes', { option1: option1Votes, option2: option2Votes, option3: option3Votes });
+  data.forEach((client) => {
+    const item = document.createElement('li');
+    item.innerHTML = `${client.vote}: ${client.vote}표`;
+    voteList.appendChild(item);
   });
-
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-});
-
-server.listen(3000, () => {
-  console.log('Server started on port 3000');
 });
