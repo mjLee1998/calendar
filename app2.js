@@ -1,0 +1,24 @@
+const express = require('express');
+const http = require('http');
+const app = express();
+const path = require('path');
+const server = http.createServer(app);
+const socketIO = require('socket.io');
+
+const io = socketIO(server);
+
+console.log('hello');
+
+app.use(express.static(path.join(__dirname, 'src')));
+
+const PORT = process.env.PORT || 3000;
+
+io.on('connection', (socket) => {
+  socket.on('chatting', (data) => {
+    console.log(data);
+    io.emit('chatting', `hi ${data}`);
+  });
+  console.log(`연결이 완료되었습니다: ${socket.id}`);
+});
+
+server.listen(PORT, () => console.log(`server is running ${PORT}`));

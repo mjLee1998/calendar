@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>GIF 채팅방</title>
+    <title>Real-time voting</title>
   </head>
   <body>
-    <div>F12를 눌러 console 탭과 network 탭을 확인하세요.</div>
-
-    <!-- 익스프레스 서버와 소켓 서버가 연결이 되면, 소켓IO 서버에서 js파일을 넣어준다 -->
-    <script src="/socket.io/socket.io.js"></script>
+    <div id="votes">
+      <button id="red">Red</button>
+      <button id="blue">Blue</button>
+      <button id="green">Green</button>
+    </div>
+    <div id="getVotes"></div>
+    <script
+      src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+      integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../jquery.js"></script>
     <script>
-      // 위의 socket.io.js에서 뽑아 쓴다.
-      const socket = io.connect('http://localhost:8005', {
-        path: '/socket.io', // 서버 path와 일치시켜준다
-        //transports: ['websocket'] // polling 시도하지말고 바로 웹소켓으로 하려면 설정
+      const socket = io.connect('http://localhost:3000');
+      const votes = document.getElementById('getVotes');
+      socket.on('votes', (data) => {
+        votes.innerHTML = `Red: ${data.red}<br>Blue: ${data.blue}<br>Green: ${data.green}`;
       });
-
-      socket.on('news', function (data) {
-        console.log(data);
-
-        socket.emit('reply', 'Hello Node.JS');
+      votes.addEventListener('click', (event) => {
+        socket.emit('vote', event.target.id);
       });
     </script>
   </body>
