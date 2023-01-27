@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Real-time voting</title>
+    <script src="./vote.js"></script>
   </head>
   <body>
     <div id="votes">
@@ -15,7 +16,6 @@
       integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
       crossorigin="anonymous"
     ></script>
-    <script src="../jquery.js"></script>
     <script>
       const socket = io.connect('http://localhost:3000');
       const votes = document.getElementById('getVotes');

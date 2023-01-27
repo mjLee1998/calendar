@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 io.on('connection', (socket) => {
   socket.on('chatting', (data) => {
     console.log(data);
-    io.emit('chatting', `hi ${data}`);
+    io.emit('chatting', data);
   });
   console.log(`연결이 완료되었습니다: ${socket.id}`);
 });

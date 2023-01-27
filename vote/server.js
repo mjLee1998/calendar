@@ -1,12 +1,16 @@
 const express = require('express');
+const http = require('http');
 const app = express();
-const server = require('http').Server(app);
+const path = require('path');
+const server = http.createServer(app);
+const socketIO = require('socket.io');
 const io = require('socket.io')(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST'],
   },
 });
+const PORT = process.env.PORT || 3000;
 
 let votes = { red: 0, blue: 0, green: 0 };
 
@@ -22,6 +26,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
+server.listen(PORT, () => console.log(`server is running ${PORT}`));
+
+app.use(express.static(path.join(__dirname, 'src')));
