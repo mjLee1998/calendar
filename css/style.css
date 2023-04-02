@@ -42,6 +42,17 @@ caption {
 #selectMonth:hover {
   color: #000;
 }
+select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
+select:disabled {
+  opacity: 0.5;
+}
 #monthControl {
   width: 107px;
   float: right;
@@ -88,7 +99,7 @@ option {
   background: #ffffff;
 }
 th.SAT {
-  color: #60a6a6;
+  color: #0abab5;
 }
 th.SUN {
   color: #ff8c8c;

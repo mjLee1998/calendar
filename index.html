@@ -19,18 +19,80 @@
     ></script>
 
     <!-- style -->
-    <link type="text/css" rel="stylesheet" href="./style.css" />
-    <link type="text/css" rel="stylesheet" href="./custom.css" />
+    <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    <link type="text/css" rel="stylesheet" href="./css/custom.css" />
+
+    <!-- script -->
+    <script type="module" src="./module/app.js"></script>
 
     <!-- axios -->
-    <!-- webpack이나 snowpack 배워서 cdn말고 import로 해보기 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="module" src="app.js"></script>
+    <!-- google API -->
+    <meta
+      name="google-signin-client_id"
+      content="1047745833364-pvkcmhg3ip4q26nodjg121vas32kts5r.apps.googleusercontent.com"
+    />
   </head>
   <body>
-    <head>
+    <header>
+      <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-auto_prompt="false"></div>
+      <div
+        style="height: 100px"
+        class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left"
+      ></div>
+      <script>
+        //처음 실행하는 함수
+        function init() {
+          gapi.load('auth2', function () {
+            gapi.auth2.init();
+            options = new gapi.auth2.SigninOptionsBuilder();
+            options.setPrompt('select_account');
+            // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+            options.setScope(
+              'email profile openid https://www.googleapis.com/auth/user.birthday.read'
+            );
+            // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+            // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+            gapi.auth2
+              .getAuthInstance()
+              .attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+          });
+        }
+
+        function onSignIn(googleUser) {
+          var access_token = googleUser.getAuthResponse().access_token;
+          $.ajax({
+            // people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+            url: 'https://people.googleapis.com/v1/people/me',
+            // key에 자신의 API 키를 넣습니다.
+            data: {
+              personFields: 'birthdays',
+              key: 'AIzaSyDH2K0ZStXKk0gvqjGO9mvMO0XTmSoBRJ0',
+              access_token: access_token,
+            },
+            method: 'GET',
+          })
+            .done(function (e) {
+              //프로필을 가져온다.
+              var profile = googleUser.getBasicProfile();
+              console.log(profile);
+            })
+            .fail(function (e) {
+              console.log(e);
+            });
+        }
+        function onSignInFailure(t) {
+          console.log(t);
+        }
+      </script>
+      <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
       <nav id="nav" class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="./index.html">Issue Calendar</a>
@@ -49,10 +111,10 @@
           <div id="siteMap" class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">홈으로</a>
+                <a class="nav-link active" aria-current="page" href="#">로그인</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">링크</a>
+                <a class="nav-link active" href="#">게시판</a>
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -62,14 +124,14 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  메뉴
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#" style="color: #000">Action</a></li>
+                  <li><a class="dropdown-item" href="#" style="color: #000">Another action</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#" style="color: #000">Something else here</a>
                   </li>
                 </ul>
               </li>
@@ -87,7 +149,7 @@
           </div>
         </div>
       </nav>
-    </head>
+    </header>
     <main>
       <table class="table caption-top calendar container-fluid" style="max-width: 900px">
         <caption>

@@ -19,13 +19,34 @@ export default class calendar {
     // var w = firstDay.getDay();
     // const firstDayWeek = WeekDay[firstDay.getDay()];
     // console.log(firstDayWeek);
+
     // 현재 해당하는 달로 이동하기
-    const nowMonth = document.querySelector('select :nth-child(' + month + ')');
-    nowMonth.setAttribute('selected', 'selected');
+    if (!localStorage.getItem('month')) {
+      document
+        .querySelector('select :nth-child(' + month + ')')
+        .setAttribute('selected', 'selected');
+    } else {
+      document
+        .querySelector('select :nth-child(' + localStorage.getItem('month') + ')')
+        .setAttribute('selected', 'selected');
+    }
 
     // 달력 채우기
     // 달을 바꿀 때마다 자동으로 채워주기 위해서 select에 onchange를 걸어서 value를 여기로 보내서 처리
     function fillCalendar(mV) {
+      // 지금 달력 다 지우기
+      var everyDay = document.querySelectorAll('td');
+      var i;
+      for (i = 0; i < 42; i++) {
+        everyDay[i].innerHTML = '';
+      }
+
+      // select month
+      for (i = 1; i <= 12; i++) {
+        document.querySelector('select :nth-child(' + i + ')').removeAttribute('selected');
+        // console.log(document.querySelector('select :nth-child(' + i + ')'));
+      }
+      $('#selectMonth').val(mV).prop('selected', true);
       const firstDay = new Date(year, mV - 1, 1);
       var w = firstDay.getDay();
       const firstDayWeek = WeekDay[firstDay.getDay()];
@@ -53,7 +74,25 @@ export default class calendar {
         var getDay = document.querySelectorAll('.d' + (i + x));
         // console.log(getDay[0]);
         getDay[0].innerHTML = i;
-        getDay[0].setAttribute('onclick', "location.href='info.html'");
+      }
+
+      // 매일매일에 Attr 부여해서 info페이지로 이동하기
+      for (var i = 1; i <= 35; i++) {
+        var evd = document.querySelector('.d' + i);
+        var DayValue = evd.innerHTML;
+        if (DayValue == '') {
+          evd.removeAttribute('onclick');
+        } else {
+          evd.setAttribute(
+            'onclick',
+            "location.href = './info/info.html" + `?${mV}` + '_' + `${DayValue}` + "'"
+          );
+        }
+        //goToinfo(' + mV + ',' + DayValue + ')'
+        var goToinfo = (m, d) => {
+          console.log(m, d);
+        };
+        window.goToinfo = goToinfo;
       }
 
       // 마지막 주(6번째 주)가 비어있다면 안보이게 하기
@@ -65,79 +104,76 @@ export default class calendar {
       }
     }
 
-    // 페이지 시작하면 이번 달을 기준으로 달력을 채움
-    window.onload = fillCalendar(nowMonth.value);
-
     // 다른 달을 선택하면 바꿔주기
     const selectedMonth = document.querySelector('#selectMonth');
     selectedMonth.onchange = () => {
-      // 지금 달력 다 지우기
-      var everyDay = document.querySelectorAll('td');
-      // console.log(everyDay);
-      var i;
-      for (i = 0; i < 42; i++) {
-        everyDay[i].innerHTML = '';
-      }
-      //다시 채우기
       fillCalendar(selectedMonth.value);
     };
+
+    // 페이지 시작하면 달력을 채움
+    if (!localStorage.getItem('month')) {
+      fillCalendar(month);
+    } else {
+      fillCalendar(localStorage.getItem('month'));
+      localStorage.removeItem('month');
+    }
 
     // 달 이동하기 버튼
 
     // 저번 달
     const prevClick = document.querySelector('#previousMonth');
     prevClick.onclick = () => {
-      var everyDay = document.querySelectorAll('td');
-      var i;
-      for (i = 0; i < 42; i++) {
-        everyDay[i].innerHTML = '';
-      }
       if (selectedMonth.value == 1) {
         fillCalendar(12);
       } else {
         fillCalendar(selectedMonth.value - 1);
       }
       var prevMonth;
-      if (selectedMonth.value == 1) {
+      if (parseInt(selectedMonth.value) == 1) {
         prevMonth = document.querySelector('#M12');
       } else {
         prevMonth = document.querySelector('#M' + (selectedMonth.value - 1));
       }
-      $('option:selected').removeAttr('selected');
-      // DOM요소가 아닌 것에 setAttr을 사용하면 오류가 발생한다.
-      prevMonth.setAttribute('selected', 'selected');
     };
 
     // 다음 달
     const nextClick = document.querySelector('#nextMonth');
     nextClick.onclick = () => {
-      var everyDay = document.querySelectorAll('td');
-      for (var i = 0; i < 42; i++) {
-        everyDay[i].innerHTML = '';
-      }
-      if (selectedMonth.value == 12) {
+      if (parseInt(selectedMonth.value) == 12) {
         fillCalendar(1);
       } else {
         fillCalendar(parseInt(selectedMonth.value) + 1);
       }
       var nextMonth;
-      if (selectedMonth.value == 12) {
+      if (parseInt(selectedMonth.value) == 12) {
         nextMonth = document.querySelector('#M1');
       } else {
         // +연산자를 사용했을 때, 오류가 생기면 typeof를 사용해서 값이 number인지 string인지 확인하기
         // -연산자의 경우에는 string이어도 ''안이 숫자로만 이루어져 있으면 number로 인식
         nextMonth = document.querySelector('#M' + (parseInt(selectedMonth.value) + 1));
       }
-      $('option:selected').removeAttr('selected');
-      nextMonth.setAttribute('selected', 'selected');
     };
 
     // 현재
     const nowClick = document.querySelector('#goToNow');
     nowClick.onclick = () => {
-      fillCalendar(nowMonth.value);
-      $('option:selected').removeAttr('selected');
-      nowMonth.setAttribute('selected', 'selected');
+      fillCalendar(month);
+    };
+
+    // 뒤로가기 감지
+    // 달력에서 날짜를 누르면 아까 눌렀던 달로는 안넘어가는 버그가 생김
+    // 뒤로가기 이벤트를 감지해서 새로고침을 하여 함수를 제대로 실행
+    window.onpageshow = function (event) {
+      if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+        // Back Forward Cache로 브라우저가 로딩될 경우 혹은 브라우저 뒤로가기 했을 경우
+        // 이벤트 추가하는 곳
+        // 새로고침
+        // window.location.reload();
+        // info.html에서 보내는 달의 값
+        var getMV = localStorage.getItem('month');
+        // const selectedGetMV = document.querySelector('select :nth-child(' + getMV + ')');
+        // fillCalendar(getMV);
+      }
     };
   }
 }

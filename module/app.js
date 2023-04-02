@@ -3,9 +3,9 @@ import getClientIP from './getClientIp.js';
 class App {
   constructor() {
     new calendar();
+    // getClientIP();
   }
 }
 window.onload = () => {
-  getClientIP();
   new App();
 };
